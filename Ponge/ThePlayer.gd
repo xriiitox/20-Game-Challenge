@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		emit_signal("balls")
 		
 		
+		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		
