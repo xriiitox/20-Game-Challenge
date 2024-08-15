@@ -3,24 +3,25 @@
 [ext_resource type="Script" path="res://Paddle.gd" id="1_ai1yo"]
 [ext_resource type="Texture2D" uid="uid://b7eiq54oj5mwl" path="res://ball.png" id="1_gi8vs"]
 [ext_resource type="Script" path="res://main.gd" id="1_yymj6"]
-[ext_resource type="Script" path="res://Ball.gd" id="2_a1r8a"]
+[ext_resource type="PackedScene" uid="uid://c3gj2ehqnej2b" path="res://ball.tscn" id="4_141gx"]
 [ext_resource type="FontFile" uid="uid://dteok4bvkvr7h" path="res://pong-score.ttf" id="5_rxmw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5mxi"]
-size = Vector2(80, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev05x"]
+size = Vector2(100, 20)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0for8"]
 font = ExtResource("5_rxmw3")
 font_size = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4b3"]
+size = Vector2(81, 734)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yymj6")
 
 [node name="Paddle" type="CharacterBody2D" parent="."]
 position = Vector2(640, 640)
-slide_on_ceiling = false
+collision_mask = 128
 script = ExtResource("1_ai1yo")
 speed = 750.0
 
@@ -29,23 +30,10 @@ shape = SubResource("RectangleShape2D_e5mxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="Paddle"]
 position = Vector2(3.8147e-06, 1.90735e-06)
-scale = Vector2(80, 20)
+scale = Vector2(100, 25)
 texture = ExtResource("1_gi8vs")
 
-[node name="Ball" type="CharacterBody2D" parent="."]
-process_mode = 4
-position = Vector2(240, 360)
-collision_mask = 2
-script = ExtResource("2_a1r8a")
-speed = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-shape = SubResource("RectangleShape2D_ev05x")
-
-[node name="Sprite2D" type="Sprite2D" parent="Ball"]
-position = Vector2(1.90735e-06, -1.90735e-06)
-scale = Vector2(20, 20)
-texture = ExtResource("1_gi8vs")
+[node name="Ball" parent="." instance=ExtResource("4_141gx")]
 
 [node name="Score" type="Label" parent="."]
 offset_left = 22.0
@@ -54,5 +42,19 @@ offset_right = 62.0
 offset_bottom = 694.0
 text = "0"
 label_settings = SubResource("LabelSettings_0for8")
+
+[node name="WallLeft" type="CharacterBody2D" parent="."]
+collision_layer = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(-40.5, 357)
+shape = SubResource("RectangleShape2D_ci4b3")
+
+[node name="WallRight" type="CharacterBody2D" parent="."]
+collision_layer = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(1322, 362)
+shape = SubResource("RectangleShape2D_ci4b3")
 
 [connection signal="balls" from="Paddle" to="Ball" method="_on_paddle_balls"]

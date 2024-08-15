@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Paddle extends CharacterBody2D
 
 signal balls
 
@@ -11,14 +11,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity = Vector2.ZERO
+	var velocity := Vector2.ZERO
 	if Input.is_action_pressed("left"):
 		velocity.x -= 1
 	if Input.is_action_pressed("right"):
 		velocity.x += 1
 	if Input.is_action_pressed("balls"):
 		balls.emit()
-		
-	velocity *= speed * delta
-	velocity.y = 0
-	move_and_collide(velocity)
+	
+	move_and_collide(velocity * speed * delta)
