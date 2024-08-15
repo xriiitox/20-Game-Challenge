@@ -8,7 +8,6 @@ func _ready():
 		for j in 14:
 			var new_brick := brick.instantiate()
 			new_brick.position = Vector2(45 + j * 90 + 10, 50 + i * 30 + 10)
-			new_brick.area_entered.connect($Ball._on_brick_area_entered)
 			add_child(new_brick)
 
 

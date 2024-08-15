@@ -1,20 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdbbcljyehl4u"]
+[gd_scene load_steps=9 format=3 uid="uid://bdbbcljyehl4u"]
 
 [ext_resource type="Script" path="res://Paddle.gd" id="1_ai1yo"]
 [ext_resource type="Texture2D" uid="uid://b7eiq54oj5mwl" path="res://ball.png" id="1_gi8vs"]
 [ext_resource type="Script" path="res://main.gd" id="1_yymj6"]
 [ext_resource type="Script" path="res://Ball.gd" id="2_a1r8a"]
+[ext_resource type="FontFile" uid="uid://dteok4bvkvr7h" path="res://pong-score.ttf" id="5_rxmw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5mxi"]
 size = Vector2(80, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev05x"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_0for8"]
+font = ExtResource("5_rxmw3")
+font_size = 32
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yymj6")
 
-[node name="Paddle" type="Area2D" parent="."]
+[node name="Paddle" type="CharacterBody2D" parent="."]
 position = Vector2(640, 640)
+slide_on_ceiling = false
 script = ExtResource("1_ai1yo")
 speed = 750.0
 
@@ -26,11 +32,12 @@ position = Vector2(3.8147e-06, 1.90735e-06)
 scale = Vector2(80, 20)
 texture = ExtResource("1_gi8vs")
 
-[node name="Ball" type="Area2D" parent="."]
+[node name="Ball" type="CharacterBody2D" parent="."]
 process_mode = 4
 position = Vector2(240, 360)
+collision_mask = 2
 script = ExtResource("2_a1r8a")
-speed = 600.0
+speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("RectangleShape2D_ev05x")
@@ -40,5 +47,12 @@ position = Vector2(1.90735e-06, -1.90735e-06)
 scale = Vector2(20, 20)
 texture = ExtResource("1_gi8vs")
 
-[connection signal="area_entered" from="Paddle" to="Ball" method="_on_paddle_area_entered"]
+[node name="Score" type="Label" parent="."]
+offset_left = 22.0
+offset_top = 671.0
+offset_right = 62.0
+offset_bottom = 694.0
+text = "0"
+label_settings = SubResource("LabelSettings_0for8")
+
 [connection signal="balls" from="Paddle" to="Ball" method="_on_paddle_balls"]

@@ -30,7 +30,7 @@ func _on_the_player_area_entered(area: Area2D) -> void:
 	$Fard.play()
 	$"../FreakyPong".modulate = Color(1, 1, 1, 1)
 	var tween = get_tree().create_tween()
-	tween.tween_property($"../FreakyPong", "modulate:a", 0, 1)
+	tween.tween_property($"../FreakyPong", "modulate:a", 0, 0.5)
 	
 
 func _on_the_opponent_area_entered(area: Area2D) -> void:
@@ -41,4 +41,4 @@ func _on_the_opponent_area_entered(area: Area2D) -> void:
 	$BineVoom.play()
 	$"../FreakyPong".modulate = Color(1, 1, 1, 1)
 	var tween = get_tree().create_tween()
-	tween.tween_property($"../FreakyPong", "modulate:a", 0, 1)
+	tween.tween_property($"../FreakyPong", "modulate:a", 0, 0.5)
