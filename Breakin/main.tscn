@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdbbcljyehl4u"]
+[gd_scene load_steps=15 format=3 uid="uid://bdbbcljyehl4u"]
 
 [ext_resource type="Script" path="res://Paddle.gd" id="1_ai1yo"]
 [ext_resource type="Texture2D" uid="uid://b7eiq54oj5mwl" path="res://ball.png" id="1_gi8vs"]
 [ext_resource type="Script" path="res://main.gd" id="1_yymj6"]
 [ext_resource type="PackedScene" uid="uid://c3gj2ehqnej2b" path="res://ball.tscn" id="4_141gx"]
 [ext_resource type="FontFile" uid="uid://dteok4bvkvr7h" path="res://pong-score.ttf" id="5_rxmw3"]
+[ext_resource type="AudioStream" uid="uid://bfblqpx0016tj" path="res://paddle.wav" id="5_x0lyx"]
+[ext_resource type="AudioStream" uid="uid://g0alb7a2ggk1" path="res://brick.wav" id="6_sxah1"]
+[ext_resource type="Texture2D" uid="uid://bmhbvtcrf4mfx" path="res://heart.png" id="8_u3rex"]
+[ext_resource type="AudioStream" uid="uid://dhcclycpyhesn" path="res://lose.wav" id="9_px076"]
+[ext_resource type="AudioStream" uid="uid://8ffjpfbvvs53" path="res://win.wav" id="10_y3ksa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5mxi"]
 size = Vector2(100, 20)
@@ -15,6 +20,9 @@ font_size = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4b3"]
 size = Vector2(81, 734)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0t4bs"]
+font_size = 64
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yymj6")
@@ -34,6 +42,12 @@ scale = Vector2(100, 25)
 texture = ExtResource("1_gi8vs")
 
 [node name="Ball" parent="." instance=ExtResource("4_141gx")]
+
+[node name="PaddleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_x0lyx")
+
+[node name="Brick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sxah1")
 
 [node name="Score" type="Label" parent="."]
 offset_left = 22.0
@@ -56,5 +70,38 @@ collision_layer = 129
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
 position = Vector2(1322, 362)
 shape = SubResource("RectangleShape2D_ci4b3")
+
+[node name="Lives" type="Node2D" parent="."]
+position = Vector2(640, 640)
+
+[node name="3" type="Sprite2D" parent="Lives"]
+position = Vector2(470, 50)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_u3rex")
+
+[node name="2" type="Sprite2D" parent="Lives"]
+position = Vector2(530, 50)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_u3rex")
+
+[node name="1" type="Sprite2D" parent="Lives"]
+position = Vector2(590, 50)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_u3rex")
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_px076")
+
+[node name="WinText" type="Label" parent="."]
+visible = false
+offset_left = 446.0
+offset_top = 172.0
+offset_right = 900.0
+offset_bottom = 400.0
+text = "You Win!!!"
+label_settings = SubResource("LabelSettings_0t4bs")
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_y3ksa")
 
 [connection signal="balls" from="Paddle" to="Ball" method="_on_paddle_balls"]

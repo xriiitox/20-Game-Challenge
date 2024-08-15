@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdfkfgr8kd31f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p2qca"]
+font_size = 64
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 490.0
+offset_top = 234.0
+offset_right = 971.0
+offset_bottom = 489.0
+text = "You Lose!"
+label_settings = SubResource("LabelSettings_p2qca")
