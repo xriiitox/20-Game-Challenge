@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyswyabjutfjt"]
+[gd_scene load_steps=7 format=3 uid="uid://cyswyabjutfjt"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_bopls"]
 [ext_resource type="Script" path="res://main.gd" id="1_s34uc"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66hbv"]
 size = Vector2(64, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx5wd"]
+size = Vector2(88, 727)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slr32"]
+size = Vector2(974.5, 348)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_s34uc")
@@ -22,3 +28,24 @@ shape = SubResource("RectangleShape2D_66hbv")
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(5, 5)
 texture = ExtResource("1_xmo6p")
+
+[node name="WallLeft" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(-47, 362)
+shape = SubResource("RectangleShape2D_dx5wd")
+
+[node name="WallRight" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(1325, 357)
+shape = SubResource("RectangleShape2D_dx5wd")
+
+[node name="BoundaryBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryBox"]
+position = Vector2(648.25, 234)
+shape = SubResource("RectangleShape2D_slr32")
+debug_color = Color(1.82897e-06, 0.593634, 0.73525, 0.42)
+
+[connection signal="body_entered" from="BoundaryBox" to="." method="_on_boundary_box_body_entered"]
