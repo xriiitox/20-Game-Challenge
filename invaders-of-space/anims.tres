@@ -1,0 +1,78 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://bjj3ny7mc22gi"]
+
+[ext_resource type="Texture2D" uid="uid://clksh000oyunk" path="res://death.png" id="1_2jfe0"]
+[ext_resource type="Texture2D" uid="uid://cxk44iemibpx8" path="res://invader1.png" id="2_s2joy"]
+[ext_resource type="Texture2D" uid="uid://2spk2p7q8dtg" path="res://invader2.png" id="3_xmoqb"]
+[ext_resource type="Texture2D" uid="uid://c2johcy2jbpft" path="res://invader3.png" id="4_2cwyg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl262"]
+atlas = ExtResource("1_2jfe0")
+region = Rect2(0, 0, 13, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyshe"]
+atlas = ExtResource("2_s2joy")
+region = Rect2(0, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n46ik"]
+atlas = ExtResource("2_s2joy")
+region = Rect2(11, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd0r0"]
+atlas = ExtResource("3_xmoqb")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okrnn"]
+atlas = ExtResource("3_xmoqb")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpeyb"]
+atlas = ExtResource("4_2cwyg")
+region = Rect2(0, 0, 12, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfisu"]
+atlas = ExtResource("4_2cwyg")
+region = Rect2(12, 0, 12, 8)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl262")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyshe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n46ik")
+}],
+"loop": true,
+"name": &"invader1",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd0r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okrnn")
+}],
+"loop": true,
+"name": &"invader2",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpeyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfisu")
+}],
+"loop": true,
+"name": &"invader3",
+"speed": 2.0
+}]

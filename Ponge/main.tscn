@@ -222,7 +222,6 @@ scale = Vector2(0.0805556, 0.0738095)
 texture = ExtResource("4_5lhgd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-visible = false
 shape = SubResource("RectangleShape2D_iwmy6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ball"]

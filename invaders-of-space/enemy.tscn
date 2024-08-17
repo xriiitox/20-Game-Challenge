@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceycx0u61ufya"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_c6l63"]
+[ext_resource type="SpriteFrames" uid="uid://bjj3ny7mc22gi" path="res://anims.tres" id="2_p6fi2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dme74"]
+size = Vector2(11.3333, 8)
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_c6l63")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.66667, 4)
+sprite_frames = ExtResource("2_p6fi2")
+animation = &"invader3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.66667, 4)
+shape = SubResource("RectangleShape2D_dme74")
+
+[node name="DeathSpriteTimeout" type="Timer" parent="."]
+one_shot = true

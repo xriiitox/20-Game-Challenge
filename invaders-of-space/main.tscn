@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyswyabjutfjt"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_bopls"]
+[ext_resource type="Script" path="res://main.gd" id="1_s34uc"]
+[ext_resource type="Texture2D" uid="uid://de4p1osw8o5r8" path="res://gun.png" id="1_xmo6p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66hbv"]
+size = Vector2(64, 24)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_s34uc")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(640, 640)
+script = ExtResource("1_bopls")
+speed = 750.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_66hbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(5, 5)
+texture = ExtResource("1_xmo6p")
