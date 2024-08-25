@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyswyabjutfjt"]
+[gd_scene load_steps=9 format=3 uid="uid://cyswyabjutfjt"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_bopls"]
 [ext_resource type="Script" path="res://main.gd" id="1_s34uc"]
 [ext_resource type="Texture2D" uid="uid://de4p1osw8o5r8" path="res://gun.png" id="1_xmo6p"]
+[ext_resource type="FontFile" uid="uid://dy7bg4ead4lk6" path="res://pong-score.ttf" id="4_hn4w7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66hbv"]
 size = Vector2(64, 24)
@@ -11,13 +12,18 @@ size = Vector2(64, 24)
 size = Vector2(88, 727)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slr32"]
-size = Vector2(974.5, 348)
+size = Vector2(974, 348)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2a12s"]
+font = ExtResource("4_hn4w7")
+font_size = 32
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_s34uc")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(640, 640)
+collision_layer = 2
 script = ExtResource("1_bopls")
 speed = 750.0
 
@@ -42,10 +48,19 @@ position = Vector2(1325, 357)
 shape = SubResource("RectangleShape2D_dx5wd")
 
 [node name="BoundaryBox" type="Area2D" parent="."]
+position = Vector2(487, 174)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryBox"]
-position = Vector2(648.25, 234)
+position = Vector2(160, 60)
 shape = SubResource("RectangleShape2D_slr32")
 debug_color = Color(1.82897e-06, 0.593634, 0.73525, 0.42)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 660.0
+offset_right = 65.0
+offset_bottom = 692.0
+text = "0"
+label_settings = SubResource("LabelSettings_2a12s")
 
 [connection signal="body_entered" from="BoundaryBox" to="." method="_on_boundary_box_body_entered"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 var enemy = preload("res://enemy.tscn")
+var enemies: Array[Array] # 2d array to adjust size of boundary box
 
 var moving_left := false
 
@@ -13,10 +14,14 @@ func _ready() -> void:
 			new_enemy.global_position = Vector2(160 + (j * 15 * 6), 60 + (i * 12 * 6))
 			add_child(new_enemy)
 	ReverseReverse.move_timer.timeout.connect(_move_da_box_sideways)
+	ReverseReverse.add_score.connect(_more_score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _more_score() -> void:
+	$Label.text = str(int($Label.text) + 10)
 
 func _move_da_box_sideways() -> void:
 	$BoundaryBox.global_position.x += -5 if moving_left else 5

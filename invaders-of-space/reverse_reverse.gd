@@ -4,6 +4,8 @@ signal reverse
 
 signal slide # this is definitely for sliding and no other purposes
 
+signal add_score
+
 var move_timer := Timer.new()
 
 func _ready() -> void:
