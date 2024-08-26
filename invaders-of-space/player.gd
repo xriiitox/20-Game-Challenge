@@ -17,3 +17,8 @@ func _physics_process(delta: float) -> void:
 		$"..".add_child(new_bullet)
 	
 	move_and_collide(velocity * speed * delta)
+	
+	if global_position.x > 1280:
+		global_position.x = 1280
+	elif global_position.x < 0:
+		global_position.x = 0
