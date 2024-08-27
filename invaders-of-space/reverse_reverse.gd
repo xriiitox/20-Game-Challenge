@@ -6,6 +6,8 @@ signal slide # this is definitely for sliding and no other purposes
 
 signal add_score
 
+signal respawn_player
+
 var move_timer := Timer.new()
 
 func _ready() -> void:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyswyabjutfjt"]
+[gd_scene load_steps=10 format=3 uid="uid://cyswyabjutfjt"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_bopls"]
 [ext_resource type="Script" path="res://main.gd" id="1_s34uc"]
 [ext_resource type="Texture2D" uid="uid://de4p1osw8o5r8" path="res://gun.png" id="1_xmo6p"]
 [ext_resource type="FontFile" uid="uid://dy7bg4ead4lk6" path="res://pong-score.ttf" id="4_hn4w7"]
 [ext_resource type="Script" path="res://enemies.gd" id="5_t7aob"]
+[ext_resource type="Texture2D" uid="uid://bfert0tikpdpn" path="res://heart.png" id="6_1symx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66hbv"]
 size = Vector2(64, 24)
@@ -33,6 +34,10 @@ shape = SubResource("RectangleShape2D_66hbv")
 scale = Vector2(5, 5)
 texture = ExtResource("1_xmo6p")
 
+[node name="ShootTimer" type="Timer" parent="Player"]
+wait_time = 0.25
+one_shot = true
+
 [node name="WallLeft" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
@@ -60,6 +65,24 @@ script = ExtResource("5_t7aob")
 wait_time = 0.3
 one_shot = true
 
+[node name="Lives" type="Node2D" parent="."]
+
+[node name="1" type="Sprite2D" parent="Lives"]
+position = Vector2(1040, 692)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_1symx")
+
+[node name="2" type="Sprite2D" parent="Lives"]
+position = Vector2(1100, 692)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_1symx")
+
+[node name="3" type="Sprite2D" parent="Lives"]
+position = Vector2(1160, 692)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_1symx")
+
+[connection signal="timeout" from="Player/ShootTimer" to="Player" method="_on_shoot_timer_timeout"]
 [connection signal="body_entered" from="WallLeft" to="Enemies" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="WallRight" to="Enemies" method="_on_wall_body_entered"]
 [connection signal="timeout" from="Enemies/ReverseCooldown" to="Enemies" method="_on_reverse_cooldown_timeout"]

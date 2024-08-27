@@ -10,7 +10,7 @@ func _ready() -> void:
 	ReverseReverse.move_timer.timeout.connect(_on_between_moves_timeout)
 
 func _on_between_moves_timeout() -> void:
-	if randf() > 0.98:
+	if randf() > 0.99:
 		var new_bull = bullet.instantiate()
 		new_bull.velocity = Vector2(0, 1)
 		new_bull.set_collision_mask_value(2, true)
