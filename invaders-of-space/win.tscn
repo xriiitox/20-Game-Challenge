@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3key2o3albyl"]
+[gd_scene load_steps=5 format=3 uid="uid://c3key2o3albyl"]
+
+[ext_resource type="Script" path="res://lose.gd" id="1_35nmd"]
+[ext_resource type="AudioStream" uid="uid://cmybi0pmcd43k" path="res://win.wav" id="2_qd61o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_51oxe"]
 font_size = 64
 
+[sub_resource type="LabelSettings" id="LabelSettings_2cseq"]
+font_size = 64
+
 [node name="Win" type="Node2D"]
+script = ExtResource("1_35nmd")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 640.0
@@ -12,3 +19,16 @@ offset_right = 964.0
 offset_bottom = 448.0
 text = "You Win!!!!"
 label_settings = SubResource("LabelSettings_51oxe")
+
+[node name="Restart" type="Label" parent="."]
+offset_left = 496.0
+offset_top = 538.0
+offset_right = 1149.0
+offset_bottom = 626.0
+text = "Press R to play again.
+"
+label_settings = SubResource("LabelSettings_2cseq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qd61o")
+autoplay = true

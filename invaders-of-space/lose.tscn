@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3rkm4y01gtvx"]
+[gd_scene load_steps=4 format=3 uid="uid://d3rkm4y01gtvx"]
+
+[ext_resource type="AudioStream" uid="uid://d1oelb7abgojv" path="res://lose.wav" id="1_3q41h"]
+[ext_resource type="Script" path="res://lose.gd" id="1_r7b76"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pqsid"]
 font_size = 64
 
 [node name="Lose" type="Node2D"]
+script = ExtResource("1_r7b76")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 640.0
@@ -12,3 +16,16 @@ offset_right = 934.0
 offset_bottom = 448.0
 text = "You Lose!"
 label_settings = SubResource("LabelSettings_pqsid")
+
+[node name="Restart" type="Label" parent="."]
+offset_left = 523.0
+offset_top = 448.0
+offset_right = 1072.0
+offset_bottom = 536.0
+text = "Press R to restart.
+"
+label_settings = SubResource("LabelSettings_pqsid")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_3q41h")
+autoplay = true

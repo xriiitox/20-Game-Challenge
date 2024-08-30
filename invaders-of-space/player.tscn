@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dedpinfdo2c6l"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_i32ow"]
+[ext_resource type="Texture2D" uid="uid://de4p1osw8o5r8" path="res://gun.png" id="2_6n4tf"]
+[ext_resource type="AudioStream" uid="uid://basnr42n6e5n6" path="res://playershoot.wav" id="3_aymdo"]
+[ext_resource type="AudioStream" uid="uid://dne23v2f7d0e3" path="res://playerdeath.wav" id="4_0h2uk"]
+[ext_resource type="Texture2D" uid="uid://7nrx3tqtdp8a" path="res://bullet.png" id="4_oe2yf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66hbv"]
+size = Vector2(64, 24)
+
+[sub_resource type="Gradient" id="Gradient_vxtol"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(640, 640)
+collision_layer = 2
+script = ExtResource("1_i32ow")
+speed = 750.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_66hbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("2_6n4tf")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_aymdo")
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0h2uk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(5.83333, 3.33333)
+emitting = false
+amount = 50
+one_shot = true
+speed_scale = 4.0
+explosiveness = 0.9
+randomness = 0.21
+texture = ExtResource("4_oe2yf")
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_amount_min = 6.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_vxtol")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

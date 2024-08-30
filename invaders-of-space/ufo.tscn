@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2o3bk5mndera"]
+
+[ext_resource type="Texture2D" uid="uid://drhf0b657hqvs" path="res://ufo.png" id="1_a0ilh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxk25"]
+size = Vector2(16, 7)
+
+[node name="UFO" type="Area2D"]
+position = Vector2(8, 3.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fxk25")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a0ilh")
