@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyswyabjutfjt"]
+[gd_scene load_steps=9 format=3 uid="uid://cyswyabjutfjt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s34uc"]
 [ext_resource type="PackedScene" uid="uid://dedpinfdo2c6l" path="res://player.tscn" id="2_bof0w"]
 [ext_resource type="FontFile" uid="uid://dy7bg4ead4lk6" path="res://pong-score.ttf" id="4_hn4w7"]
 [ext_resource type="Script" path="res://enemies.gd" id="5_t7aob"]
 [ext_resource type="Texture2D" uid="uid://bfert0tikpdpn" path="res://heart.png" id="6_1symx"]
+[ext_resource type="AudioStream" uid="uid://dw8feu1mqbhxm" path="res://633189__anapb__scialrm_8-bit-ufo.wav" id="6_oncb2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx5wd"]
 size = Vector2(88, 727)
@@ -62,6 +63,14 @@ position = Vector2(1160, 692)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_1symx")
 
+[node name="UFOSpawner" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="UFONoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_oncb2")
+
 [connection signal="body_entered" from="WallLeft" to="Enemies" method="_on_wall_body_entered"]
 [connection signal="body_entered" from="WallRight" to="Enemies" method="_on_wall_body_entered"]
 [connection signal="timeout" from="Enemies/ReverseCooldown" to="Enemies" method="_on_reverse_cooldown_timeout"]
+[connection signal="timeout" from="UFOSpawner" to="." method="_on_ufo_spawner_timeout"]

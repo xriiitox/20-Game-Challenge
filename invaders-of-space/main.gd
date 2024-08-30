@@ -1,7 +1,9 @@
 extends Node2D
 
 var enemy = preload("res://enemy.tscn")
+var UFO = preload("res://ufo.tscn")
 var num_enemies := 0
+var ufos := 0
 
 var moving_left := false
 
@@ -20,7 +22,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if num_enemies == 0:
 		get_tree().change_scene_to_file("res://win.tscn")
+	if ufos == 0:
+		$UFONoise.stop()
+		
 
 # more score and seven years ago
-func _more_score() -> void:
-	$Label.text = str(int($Label.text) + 10)
+func _more_score(num: int) -> void:
+	$Label.text = str(int($Label.text) + num)
+
+
+func _on_ufo_spawner_timeout() -> void:
+	var new_ufo := UFO.instantiate()
+	add_child(new_ufo)
+	ufos += 1
+	if ufos == 1:
+		$UFONoise.play()

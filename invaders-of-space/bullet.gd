@@ -21,7 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.get_child(0).visible = false
 		body.get_child(4).play()
 		# body.queue_free()
-		ReverseReverse.add_score.emit()
+		ReverseReverse.add_score.emit(10)
 		Main.num_enemies -= 1
 	else:
 		ReverseReverse.respawn_player.emit()

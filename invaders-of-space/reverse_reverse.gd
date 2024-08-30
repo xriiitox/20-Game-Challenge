@@ -4,7 +4,7 @@ signal reverse
 
 signal slide # this is definitely for sliding and no other purposes
 
-signal add_score
+signal add_score(num)
 
 signal respawn_player
 
